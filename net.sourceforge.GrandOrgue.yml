@@ -22,6 +22,18 @@ finish-args:
 modules:
   - shared-modules/linux-audio/fftw3f-static.json
   - shared-modules/linux-audio/jack2.json
+  # Needed for icons (build-time only)
+  - name: ImageMagick
+    config-opts:
+      - --disable-shared
+      - --disable-static
+      - --disable-docs
+    sources:
+      - type: archive
+        url: https://github.com/ImageMagick/ImageMagick/archive/7.1.0-8.tar.gz
+        sha256: 3d9b31ff6eb8408cf610c8bbb820b5e46010c21aecc1296b905be60ee1d127a7
+    cleanup:
+      - '*'
   - name: wxWidgets
     rm-configure: true
     cleanup:
@@ -33,7 +45,6 @@ modules:
       - '*.la'
       - '*.so'
     config-opts:
-      - --disable-webkit
       - --disable-webview
       - --enable-markup
       - --disable-sdltest
@@ -42,29 +53,18 @@ modules:
       cxxflags: -std=c++11
     sources:
       - type: archive
-        url: https://github.com/wxWidgets/wxWidgets/releases/download/v3.1.4/wxWidgets-3.1.4.tar.bz2
-        sha256: 3ca3a19a14b407d0cdda507a7930c2e84ae1c8e74f946e0144d2fa7d881f1a94
+        url: https://github.com/wxWidgets/wxWidgets/releases/download/v3.1.5/wxWidgets-3.1.5.tar.bz2
+        sha256: d7b3666de33aa5c10ea41bb9405c40326e1aeb74ee725bb88f90f1d50270a224 
   - name: grandorgue
     buildsystem: cmake-ninja
     config-opts:
       - -DCMAKE_SKIP_RPATH=ON
-      - -DVERSION_REVISION=2338
+      - -DVERSION_REVISION=2342
     post-install:
       - sed -i -e "s/Icon=GrandOrgue/Icon=${FLATPAK_ID}/" ${FLATPAK_DEST}/share/applications/GrandOrgue.desktop
-      - mkdir -p ${FLATPAK_DEST}/share/icons/hicolor/128x128/apps
-      - mkdir -p ${FLATPAK_DEST}/share/icons/hicolor/64x64/apps
-      - install -m644 grandorgue-128x128.png ${FLATPAK_DEST}/share/icons/hicolor/128x128/apps/GrandOrgue.png
-      - install -m644 grandorgue-64x64.png ${FLATPAK_DEST}/share/icons/hicolor/64x64/apps/GrandOrgue.png
-      - mv ${FLATPAK_DEST}/share/mime/packages/grandorgue.xml ${FLATPAK_DEST}/share/mime/packages/${FLATPAK_ID}.xml
+      - mv ${FLATPAK_DEST}/share/mime/packages/{grandorgue,${FLATPAK_ID}}.xml
     sources:
-      - type: svn
-        url: svn://svn.code.sf.net/p/ourorgan/svn/trunk
-        revision: '2338'
-      - type: file
-        path: icons/grandorgue-128x128.png
-      - type: file
-        path: icons/grandorgue-64x64.png
-      - type: patch
-        path: patches/0001-fix-default-icon-destination.patch
-      - type: patch
-        path: patches/0002-update-appdata-file.patch
+      - type: git
+        url: https://github.com/GrandOrgue/grandorgue.git
+        commit: 7b71ce320f59f8532edb7f5335c02f376ae8c098
+        tag: 0.3.1.2342-1
