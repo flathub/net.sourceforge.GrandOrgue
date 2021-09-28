@@ -72,5 +72,10 @@ modules:
         url: https://github.com/GrandOrgue/grandorgue.git
         commit: 3017914fc84e25d4fde1aa42365ae6c493d1c257
         tag: 3.2.0-1
+        x-checker-data:
+          type: anitya
+          project-id: 235120
+          tag-template: v$version
+          stable-only: true
       - type: file
         path: GrandOrgue.appdata.xml
