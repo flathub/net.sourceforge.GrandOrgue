@@ -65,11 +65,12 @@ modules:
       - mv ${FLATPAK_DEST}/share/mime/packages/{grandorgue,${FLATPAK_ID}}.xml
       - rm -rf ${FLATPAK_DEST}/share/icons/hicolor/1024x1024
     sources:
-      - type: archive
-        url: https://github.com/GrandOrgue/grandorgue/archive/refs/tags/3.2.0-1.tar.gz
-        sha256: cdb907eae24c18fabc5c41cda6104f162620046cabfcb55fa1034ed760eaae37
+      - type: git
+        url: https://github.com/GrandOrgue/grandorgue.git
+        commit: 3017914fc84e25d4fde1aa42365ae6c493d1c257
+        tag: 3.2.0-1
         x-checker-data:
           type: anitya
           project-id: 235120
+          tag-template: v$version
           stable-only: true
-          url-template: https://github.com/GrandOrgue/grandorgue/archive/refs/tags/$version.tar.gz
