@@ -54,7 +54,7 @@ modules:
     sources:
       - type: archive
         url: https://github.com/wxWidgets/wxWidgets/releases/download/v3.1.5/wxWidgets-3.1.5.tar.bz2
-        sha256: d7b3666de33aa5c10ea41bb9405c40326e1aeb74ee725bb88f90f1d50270a224 
+        sha256: d7b3666de33aa5c10ea41bb9405c40326e1aeb74ee725bb88f90f1d50270a224
   - name: grandorgue
     buildsystem: cmake-ninja
     config-opts:
@@ -66,8 +66,8 @@ modules:
       - rm -rf ${FLATPAK_DEST}/share/icons/hicolor/1024x1024
     sources:
       - type: archive
-        url: https://github.com/GrandOrgue/grandorgue/archive/refs/tags/3.2.0-1.tar.gz
-        sha256: cdb907eae24c18fabc5c41cda6104f162620046cabfcb55fa1034ed760eaae37
+        url: https://github.com/GrandOrgue/grandorgue/archive/refs/tags/0.3.1.2342-1.tar.gz
+        sha256: d3412d58593583c92eef4be7e14555c0a01a56ce29e0ab336396d2df90a7fc85
         x-checker-data:
           type: anitya
           project-id: 235120
