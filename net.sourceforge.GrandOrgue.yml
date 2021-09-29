@@ -72,5 +72,5 @@ modules:
         x-checker-data:
           type: anitya
           project-id: 235120
-          tag-template: v$version
+          tag-template: $version
           stable-only: true
