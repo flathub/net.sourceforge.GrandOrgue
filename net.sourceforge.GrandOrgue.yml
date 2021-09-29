@@ -63,7 +63,8 @@ modules:
       - -DBUILD_VERSION=1
     post-install:
       - sed -i -e "s/Icon=GrandOrgue/Icon=${FLATPAK_ID}/" ${FLATPAK_DEST}/share/applications/GrandOrgue.desktop
-      - sed -i -e "s/GrandOrgue\.desktop/${FLATPAK_ID}.desktop/" ${FLATPAK_DEST}/share/metainfo/GrandOrgue.appdata.xml
+      - rm ${FLATPAK_DEST}/share/metainfo/GrandOrgue.appdata.xml
+      - install -m644 GrandOrgue.appdata.xml ${FLATPAK_DEST}/share/metainfo
       - mv ${FLATPAK_DEST}/share/mime/packages/{grandorgue,${FLATPAK_ID}}.xml
       - rm -rf ${FLATPAK_DEST}/share/icons/hicolor/1024x1024
     sources:
@@ -76,3 +77,5 @@ modules:
           project-id: 235120
           tag-template: $version
           stable-only: true
+      - type: file
+        path: GrandOrgue.appdata.xml
