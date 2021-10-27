@@ -54,12 +54,11 @@ modules:
     sources:
       - type: archive
         url: https://github.com/wxWidgets/wxWidgets/releases/download/v3.1.5/wxWidgets-3.1.5.tar.bz2
-        sha256: d7b3666de33aa5c10ea41bb9405c40326e1aeb74ee725bb88f90f1d50270a224 
+        sha256: d7b3666de33aa5c10ea41bb9405c40326e1aeb74ee725bb88f90f1d50270a224
   - name: grandorgue
     buildsystem: cmake-ninja
     config-opts:
       - -DCMAKE_SKIP_RPATH=ON
-      - -DPROJECT_VERSION=3.2.0
       - -DBUILD_VERSION=1
     post-install:
       - sed -i -e "s/Icon=GrandOrgue/Icon=${FLATPAK_ID}/" ${FLATPAK_DEST}/share/applications/GrandOrgue.desktop
@@ -70,8 +69,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/GrandOrgue/grandorgue.git
-        commit: ed80584f40cfe1363a05c88ffcf48dda59edc08d
-        tag: 3.3.0-1
+        commit: 84c2e635cbfb4f36d2b08c9d97bb28d0f342cf7a
+        tag: 3.4.0-1
         x-checker-data:
           type: anitya
           project-id: 235120
