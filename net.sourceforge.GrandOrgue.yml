@@ -59,8 +59,8 @@ modules:
     buildsystem: cmake-ninja
     config-opts:
       - -DCMAKE_SKIP_RPATH=ON
-      - -DPROJECT_VERSION=$(git describe --tags | cut -d- -f1)
-      - -DBUILD_VERSION=$(git describe --tags | cut -d- -f2-3 --output-delimiter=.)
+      - -DPROJECT_VERSION=3.4.0
+      - -DBUILD_VERSION=1
     post-install:
       - sed -i -e "s/Icon=GrandOrgue/Icon=${FLATPAK_ID}/" ${FLATPAK_DEST}/share/applications/GrandOrgue.desktop
       - rm ${FLATPAK_DEST}/share/metainfo/GrandOrgue.appdata.xml
