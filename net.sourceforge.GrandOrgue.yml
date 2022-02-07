@@ -9,7 +9,8 @@ rename-icon: GrandOrgue
 finish-args:
   # Needed for X11
   - --share=ipc
-  - --socket=x11
+  - --socket=wayland
+  - --socket=fallback-x11
   # Needed for note playpack
   - --socket=pulseaudio
   # Needed for PortAudio/MIDI
