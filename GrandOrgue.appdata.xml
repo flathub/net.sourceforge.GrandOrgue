@@ -29,7 +29,7 @@
   <project_license>GPL-2.0+</project_license>
   <name>GrandOrgue</name>
   <summary>Pipe organ simulator</summary>
-  <url type="homepage">https://sourceforge.net/projects/ourorgan"</url>
+  <url type="homepage">https://github.com/GrandOrgue/grandorgue</url>
 
   <description>
     <p>
@@ -69,6 +69,7 @@
   </provides>
 
   <releases>
+    <release version="3.6.4-1" date="2022-03-18"></release>
     <release version="3.6.3-1" date="2022-03-02"></release>
     <release version="3.6.2-1" date="2022-02-10"></release>
     <release version="3.6.1-1" date="2022-01-29"></release>
