@@ -77,5 +77,6 @@ modules:
           project-id: 235120
           tag-template: $version
           stable-only: true
+          is-main-source: true
       - type: file
         path: GrandOrgue.appdata.xml
