@@ -64,14 +64,14 @@ modules:
     post-install:
       - sed -i -e "s/Icon=GrandOrgue/Icon=${FLATPAK_ID}/" ${FLATPAK_DEST}/share/applications/GrandOrgue.desktop
       - rm ${FLATPAK_DEST}/share/metainfo/GrandOrgue.appdata.xml
-      - install -m644 GrandOrgue.appdata.xml ${FLATPAK_DEST}/share/metainfo
+      - install -m644 GrandOrgue.metainfo.xml ${FLATPAK_DEST}/share/metainfo
       - mv ${FLATPAK_DEST}/share/mime/packages/{grandorgue,${FLATPAK_ID}}.xml
       - rm -rf ${FLATPAK_DEST}/share/icons/hicolor/1024x1024
     sources:
       - type: git
         url: https://github.com/GrandOrgue/grandorgue.git
-        commit: dd38882745628852fce23bf1a7398c90d84f82aa
-        tag: 3.6.4-1
+        commit: 84d2097212b017bb1e0b9a127c5566088e14cc4e
+        tag: 3.6.5-1
         x-checker-data:
           type: anitya
           project-id: 235120
@@ -79,4 +79,4 @@ modules:
           stable-only: true
           is-main-source: true
       - type: file
-        path: GrandOrgue.appdata.xml
+        path: GrandOrgue.metainfo.xml
