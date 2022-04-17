@@ -4,7 +4,7 @@ sdk: org.freedesktop.Sdk
 runtime-version: '21.08'
 command: GrandOrgue
 rename-desktop-file: GrandOrgue.desktop
-rename-appdata-file: GrandOrgue.appdata.xml
+rename-appdata-file: GrandOrgue.metainfo.xml
 rename-icon: GrandOrgue
 finish-args:
   # Needed for X11
