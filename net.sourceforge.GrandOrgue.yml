@@ -78,4 +78,4 @@ modules:
           stable-only: true
           is-main-source: true
       - type: file
-        path: GrandOrgue.metainfo.xml
+        path: GrandOrgue.appdata.xml
