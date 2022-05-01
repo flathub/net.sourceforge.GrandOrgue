@@ -4,7 +4,6 @@ sdk: org.freedesktop.Sdk
 runtime-version: '21.08'
 command: GrandOrgue
 rename-desktop-file: GrandOrgue.desktop
-rename-appdata-file: GrandOrgue.metainfo.xml
 rename-icon: GrandOrgue
 finish-args:
   # Needed for X11
@@ -64,7 +63,7 @@ modules:
     post-install:
       - sed -i -e "s/Icon=GrandOrgue/Icon=${FLATPAK_ID}/" ${FLATPAK_DEST}/share/applications/GrandOrgue.desktop
       - rm ${FLATPAK_DEST}/share/metainfo/GrandOrgue.appdata.xml
-      - install -m644 GrandOrgue.metainfo.xml ${FLATPAK_DEST}/share/metainfo
+      - install -m644 ${FLATPAK_ID}.appdata.xml ${FLATPAK_DEST}/share/metainfo
       - mv ${FLATPAK_DEST}/share/mime/packages/{grandorgue,${FLATPAK_ID}}.xml
       - rm -rf ${FLATPAK_DEST}/share/icons/hicolor/1024x1024
     sources:
@@ -79,4 +78,4 @@ modules:
           stable-only: true
           is-main-source: true
       - type: file
-        path: GrandOrgue.metainfo.xml
+        path: net.sourceforge.GrandOrgue.appdata.xml
