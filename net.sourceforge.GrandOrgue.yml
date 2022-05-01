@@ -78,4 +78,4 @@ modules:
           stable-only: true
           is-main-source: true
       - type: file
-        path: GrandOrgue.appdata.xml
+        path: net.sourceforge.GrandOrgue.appdata.xml
