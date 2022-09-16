@@ -21,7 +21,6 @@ finish-args:
   - --system-talk-name=org.freedesktop.RealtimeKit1
 modules:
   - shared-modules/linux-audio/fftw3f-static.json
-  - shared-modules/linux-audio/jack2.json
   # Needed for icons (build-time only)
   - name: ImageMagick
     config-opts:
