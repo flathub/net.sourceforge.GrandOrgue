@@ -68,8 +68,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/GrandOrgue/grandorgue.git
-        commit: 25a926d0a616d2728107595b3d2a81fd41b6014d
-        tag: 3.9.5-1
+        commit: 76e6bccf0b94ffc1c4a78387fb3d59180d96f0bb
+        tag: 3.10.0-1
         x-checker-data:
           type: anitya
           project-id: 235120
