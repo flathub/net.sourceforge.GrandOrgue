@@ -54,6 +54,15 @@ modules:
       - type: archive
         url: https://github.com/wxWidgets/wxWidgets/releases/download/v3.1.5/wxWidgets-3.1.5.tar.bz2
         sha256: d7b3666de33aa5c10ea41bb9405c40326e1aeb74ee725bb88f90f1d50270a224
+  - name: yaml-cpp
+    buildsystem: cmake-ninja
+    config-opts:
+      - -DBUILD_SHARED_LIBS=ON
+      - -DYAML_BUILD_SHARED_LIBS=ON
+    sources:
+      - type: archive
+        url: https://github.com/jbeder/yaml-cpp/archive/yaml-cpp-0.7.0.tar.gz
+        sha256: 43e6a9fcb146ad871515f0d0873947e5d497a1c9c60c58cb102a97b47208b7c3
   - name: grandorgue
     buildsystem: cmake-ninja
     config-opts:
