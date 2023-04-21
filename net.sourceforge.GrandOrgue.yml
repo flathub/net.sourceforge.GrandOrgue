@@ -56,9 +56,6 @@ modules:
         sha256: d7b3666de33aa5c10ea41bb9405c40326e1aeb74ee725bb88f90f1d50270a224
   - name: yaml-cpp
     buildsystem: cmake-ninja
-    config-opts:
-      - -DBUILD_SHARED_LIBS=ON
-      - -DYAML_BUILD_SHARED_LIBS=ON
     sources:
       - type: archive
         url: https://github.com/jbeder/yaml-cpp/archive/yaml-cpp-0.7.0.tar.gz
@@ -77,8 +74,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/GrandOrgue/grandorgue.git
-        commit: 23c06cb240242cff6b42cc411f4707154cb3c084
-        tag: 3.10.1-1
+        commit: 0dae665c7f084434b46fe9976ef29df8bc4690c5
+        tag: 3.11.0-1
         x-checker-data:
           type: anitya
           project-id: 235120
