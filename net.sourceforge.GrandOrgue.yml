@@ -57,8 +57,13 @@ modules:
   - name: yaml-cpp
     buildsystem: cmake-ninja
     config-opts:
+      - -DCMAKE_INSTALL_PREFIX=/app
+      - -DCMAKE_BUILD_TYPE=Release
       - -DBUILD_SHARED_LIBS=ON
       - -DYAML_BUILD_SHARED_LIBS=ON
+      - -DYAML_CPP_BUILD_TOOLS=OFF
+      - -DYAML_CPP_BUILD_TESTS=OFF
+      - -DYAML_CPP_BUILD_CONTRIB=OFF
     sources:
       - type: archive
         url: https://github.com/jbeder/yaml-cpp/archive/yaml-cpp-0.7.0.tar.gz
