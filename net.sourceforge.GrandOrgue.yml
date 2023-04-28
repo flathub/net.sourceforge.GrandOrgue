@@ -45,7 +45,7 @@ modules:
       - type: file
         path: net.sourceforge.GrandOrgue.appdata.xml
     modules:
-        - shared-modules/linux-audio/fftw3f-static.json
-        - dependencies/imagemagick.yml # Needed for icons (build-time only)
-        - dependencies/wxwidgets.yml
-        - dependencies/yaml-cpp.yml
+      - shared-modules/linux-audio/fftw3f-static.json
+      - dependencies/imagemagick.yml # Needed for icons (build-time only)
+      - dependencies/wxwidgets.yml
+      - dependencies/yaml-cpp.yml
