@@ -25,6 +25,8 @@ modules:
     config-opts:
       - -DCMAKE_SKIP_RPATH=ON
       - -DBUILD_VERSION=1
+      - -DYAML_CPP_INCLUDE_DIRS=/app/include/yaml-cpp
+      - -DYAML_CPP_LIBRARIES=/app/lib
     post-install:
       - sed -i -e "s/Icon=GrandOrgue/Icon=${FLATPAK_ID}/" ${FLATPAK_DEST}/share/applications/GrandOrgue.desktop
       - rm ${FLATPAK_DEST}/share/metainfo/GrandOrgue.appdata.xml
