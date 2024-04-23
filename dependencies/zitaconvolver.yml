@@ -1,0 +1,5 @@
+name: zitaconvolver
+sources:
+  - type: archive
+    url: https://github.com/GrandOrgue/ZitaConvolver/archive/refs/tags/upstream/4.0.3.tar.gz
+    sha256: 7435a6278b18e1b9d35358d34eeb0d918f9952b87ff8bbba40896434107f2bd5

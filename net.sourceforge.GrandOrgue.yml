@@ -28,6 +28,8 @@ modules:
       - -DYAML_CPP_INCLUDE_DIRS=/app/include/yaml-cpp
       - -DYAML_CPP_LIBRARIES=/app/lib
       - -DUSE_INTERNAL_RTAUDIO=OFF
+      - -DUSE_INTERNAL_PORTAUDIO=OFF
+      - -DUSE_INTERNAL_ZITACONVOLVER=OFF
     post-install:
       - sed -i -e "s/Icon=GrandOrgue/Icon=${FLATPAK_ID}/" ${FLATPAK_DEST}/share/applications/GrandOrgue.desktop
       - rm ${FLATPAK_DEST}/share/metainfo/GrandOrgue.appdata.xml
@@ -53,3 +55,5 @@ modules:
       - dependencies/yaml-cpp.yml
       - dependencies/rtaudio.yml
       - dependencies/rtmidi.yml
+      - dependencies/portaudio.yml
+      - dependencies/zitaconvolver.yml
