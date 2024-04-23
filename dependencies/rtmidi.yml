@@ -1,4 +1,4 @@
-name: rtmidi
+name: RtMidi
 sources:
   - type: archive
     url: https://github.com/thestk/rtmidi/archive/refs/tags/6.0.0.tar.gz
