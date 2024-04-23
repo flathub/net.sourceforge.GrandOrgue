@@ -1,0 +1,5 @@
+name: rtaudio
+sources:
+  - type: archive
+    url: https://github.com/thestk/rtaudio/archive/refs/tags/6.0.1.tar.gz
+    sha256: 7206c8b6cee43b474f43d64988fefaadfdcfc4264ed38d8de5f5d0e6ddb0a123
