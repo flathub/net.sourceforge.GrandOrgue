@@ -27,6 +27,9 @@ modules:
       - -DBUILD_VERSION=1
       - -DYAML_CPP_INCLUDE_DIRS=/app/include/yaml-cpp
       - -DYAML_CPP_LIBRARIES=/app/lib
+      - -DUSE_INTERNAL_RTAUDIO=OFF
+      - -DUSE_INTERNAL_PORTAUDIO=OFF
+      - -DUSE_INTERNAL_ZITACONVOLVER=OFF
     post-install:
       - sed -i -e "s/Icon=GrandOrgue/Icon=${FLATPAK_ID}/" ${FLATPAK_DEST}/share/applications/GrandOrgue.desktop
       - rm ${FLATPAK_DEST}/share/metainfo/GrandOrgue.appdata.xml
@@ -34,10 +37,9 @@ modules:
       - mv ${FLATPAK_DEST}/share/mime/packages/{grandorgue,${FLATPAK_ID}}.xml
       - rm -rf ${FLATPAK_DEST}/share/icons/hicolor/1024x1024
     sources:
-      - type: git
-        url: https://github.com/GrandOrgue/grandorgue.git
-        commit: 1488ab2a4af7901c5fde5db6b28e2edb21ec8b89
-        tag: 3.13.3-1
+      - type: archive
+        url: https://github.com/GrandOrgue/grandorgue/archive/refs/tags/3.13.3-1.tar.gz
+        sha256: 026e4f48a6a9eadb5b24bfae11a070aa9c7bf7c0d32b8dd08b56759aeb6e8af7
         x-checker-data:
           type: anitya
           project-id: 235120
@@ -51,3 +53,7 @@ modules:
       - dependencies/imagemagick.yml # Needed for icons (build-time only)
       - dependencies/wxwidgets.yml
       - dependencies/yaml-cpp.yml
+      - dependencies/rtaudio.yml
+      - dependencies/rtmidi.yml
+      - dependencies/portaudio.yml
+      - dependencies/zitaconvolver.yml

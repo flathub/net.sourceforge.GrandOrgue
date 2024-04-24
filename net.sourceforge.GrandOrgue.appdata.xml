@@ -31,6 +31,10 @@
   <summary>Pipe organ simulator</summary>
   <url type="homepage">https://github.com/GrandOrgue/grandorgue</url>
 
+  <developer id="io.github.GrandOrgue">
+    <name>GrandOrgue developers</name>
+  </developer>
+
   <description>
     <p>
       GrandOrgue is a virtual pipe organ sample player application supporting

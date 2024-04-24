@@ -1,0 +1,8 @@
+name: ZitaConvolver
+buildsystem: simple
+build-commands:
+  - cd source && make -j $FLATPAK_BUILDER_N_JOBS && make PREFIX=$FLATPAK_DEST LIBDIR=$FLATPAK_DEST/lib install
+sources:
+  - type: archive
+    url: https://github.com/GrandOrgue/ZitaConvolver/archive/refs/tags/upstream/4.0.3.tar.gz
+    sha256: 7435a6278b18e1b9d35358d34eeb0d918f9952b87ff8bbba40896434107f2bd5
