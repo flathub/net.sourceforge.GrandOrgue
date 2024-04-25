@@ -1,7 +1,7 @@
 name: ZitaConvolver
 buildsystem: simple
 build-commands:
-  - cd source && make -j $FLATPAK_BUILDER_N_JOBS && make PREFIX=$FLATPAK_DEST LIBDIR=$FLATPAK_DEST/lib install
+  - cd source && make -j $FLATPAK_BUILDER_N_JOBS && make PREFIX=$FLATPAK_DEST LIBDIR=$FLATPAK_DEST/lib install && ln -sf libzita-convolver.so.4.0.3 $FLATPAK_DEST/lib/libzita-convolver.so.4
 sources:
   - type: archive
     url: https://github.com/GrandOrgue/ZitaConvolver/archive/refs/tags/upstream/4.0.3.tar.gz
