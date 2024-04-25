@@ -43,7 +43,7 @@ modules:
         x-checker-data:
           type: anitya
           project-id: 235120
-          tag-template: $version
+          url-template: https://github.com/GrandOrgue/grandorgue/archive/refs/tags/$version.tar.gz
           stable-only: true
           is-main-source: true
       - type: file
