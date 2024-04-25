@@ -38,8 +38,8 @@ modules:
       - rm -rf ${FLATPAK_DEST}/share/icons/hicolor/1024x1024
     sources:
       - type: archive
-        url: https://github.com/GrandOrgue/grandorgue/archive/refs/tags/3.13.3-1.tar.gz
-        sha256: 026e4f48a6a9eadb5b24bfae11a070aa9c7bf7c0d32b8dd08b56759aeb6e8af7
+        url: https://github.com/GrandOrgue/grandorgue/archive/refs/tags/3.14.1-1.tar.gz
+        sha256: 3fe1aa3b72e235e324714777cf1c2be56543dbbd1c0760f98192c49cf0615dda
         x-checker-data:
           type: anitya
           project-id: 235120
