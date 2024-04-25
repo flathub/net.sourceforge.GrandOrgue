@@ -73,6 +73,7 @@
   </provides>
 
   <releases>
+    <release version="3.14.1-1" date="2024-04-25"/>
     <release version="3.13.3-1" date="2024-01-08"/>
     <release version="3.13.2-1" date="2023-11-21"/>
     <release version="3.13.1-1" date="2023-11-06"/>
