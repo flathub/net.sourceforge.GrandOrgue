@@ -46,6 +46,8 @@ modules:
           url-template: https://github.com/GrandOrgue/grandorgue/archive/refs/tags/$version.tar.gz
           stable-only: true
           is-main-source: true
+      - type: patch
+        path: patches/restore-xdg-compliant-paths.patch
       - type: file
         path: net.sourceforge.GrandOrgue.appdata.xml
     modules:

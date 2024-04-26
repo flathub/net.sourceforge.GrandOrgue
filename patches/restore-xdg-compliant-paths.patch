@@ -1,0 +1,57 @@
+--- grandorgue-3.6.4.orig/src/core/GOStdPath.cpp
++++ grandorgue-3.6.4/src/core/GOStdPath.cpp
+@@ -41,6 +41,14 @@ wxString GOStdPath::GetConfigDir() {
+   return wxStandardPaths::Get().GetUserConfigDir();
+ }
+ 
++wxString GOStdPath::GetCacheDir() {
++#if wxCHECK_VERSION(3, 1, 1)
++    return wxStandardPaths::Get().GetUserDir(wxStandardPaths::Dir_Cache);
++#else
++    return GetGrandOrgueSubDir(wxT("Cache"));
++#endif
++}
++
+ wxString GOStdPath::GetDocumentDir() {
+   return wxStandardPaths::Get().GetDocumentsDir();
+ }
+--- grandorgue-3.6.4.orig/src/core/GOStdPath.h
++++ grandorgue-3.6.4/src/core/GOStdPath.h
+@@ -16,6 +16,7 @@ public:
+   static wxString GetBaseDir();
+   static wxString GetResourceDir();
+   static wxString GetConfigDir();
++  static wxString GetCacheDir();
+   static wxString GetDocumentDir();
+   static wxString GetGrandOrgueDir();
+   static wxString GetGrandOrgueSubDir(const wxString &subdir);
+--- grandorgue-3.6.4.orig/src/grandorgue/GOApp.cpp
++++ grandorgue-3.6.4/src/grandorgue/GOApp.cpp
+@@ -118,10 +118,12 @@ bool GOApp::OnInit() {
+   if (!wxApp::OnInit())
+     return false;
+ 
++  // calls SetFileLayout
++  GOStdPath::InitLocaleDir();
++
+   m_config = new GOConfig(m_InstanceName);
+   m_config->Load();
+ 
+-  GOStdPath::InitLocaleDir();
+   m_locale.Init(m_config->GetLanguageId());
+   m_locale.AddCatalog(wxT("GrandOrgue"));
+ 
+--- grandorgue-3.6.4.orig/src/grandorgue/config/GOConfig.cpp
++++ grandorgue-3.6.4/src/grandorgue/config/GOConfig.cpp
+@@ -224,9 +224,9 @@ GOConfig::GOConfig(wxString instance)
+   OrganPackagePath.setDefaultValue(
+     GOStdPath::GetGrandOrgueSubDir(_("Organ packages")));
+   OrganCachePath.setDefaultValue(
+-    GOStdPath::GetGrandOrgueSubDir(wxT("Cache") + m_InstanceName));
++    GOStdPath::GetCacheDir() + wxFileName::GetPathSeparator() + wxT("GrandOrgueCache") + m_InstanceName);
+   OrganSettingsPath.setDefaultValue(
+-    GOStdPath::GetGrandOrgueSubDir(wxT("Data") + m_InstanceName));
++    GOStdPath::GetConfigDir() + wxFileName::GetPathSeparator() + wxT("GrandOrgueData") + m_InstanceName);
+   ExportImportPath.setDefaultValue(
+     GOStdPath::GetGrandOrgueSubDir(_("Settings")));
+   AudioRecorderPath.setDefaultValue(
