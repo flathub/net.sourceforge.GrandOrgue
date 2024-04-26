@@ -1,6 +1,7 @@
---- grandorgue-3.6.4.orig/src/core/GOStdPath.cpp
-+++ grandorgue-3.6.4/src/core/GOStdPath.cpp
-@@ -41,6 +41,14 @@ wxString GOStdPath::GetConfigDir() {
+diff -ru grandorgue-3.14.1.orig/src/core/GOStdPath.cpp grandorgue-3.14.1/src/core/GOStdPath.cpp
+--- grandorgue-3.14.1.orig/src/core/GOStdPath.cpp	2024-04-26 15:16:05.052857222 -0300
++++ grandorgue-3.14.1/src/core/GOStdPath.cpp	2024-04-26 15:16:39.842830713 -0300
+@@ -41,6 +41,14 @@
    return wxStandardPaths::Get().GetUserConfigDir();
  }
  
@@ -15,9 +16,10 @@
  wxString GOStdPath::GetDocumentDir() {
    return wxStandardPaths::Get().GetDocumentsDir();
  }
---- grandorgue-3.6.4.orig/src/core/GOStdPath.h
-+++ grandorgue-3.6.4/src/core/GOStdPath.h
-@@ -16,6 +16,7 @@ public:
+diff -ru grandorgue-3.14.1.orig/src/core/GOStdPath.h grandorgue-3.14.1/src/core/GOStdPath.h
+--- grandorgue-3.14.1.orig/src/core/GOStdPath.h	2024-04-26 15:19:32.162697640 -0300
++++ grandorgue-3.14.1/src/core/GOStdPath.h	2024-04-26 15:18:15.472755558 -0300
+@@ -16,6 +16,7 @@
    static wxString GetBaseDir();
    static wxString GetResourceDir();
    static wxString GetConfigDir();
@@ -25,9 +27,10 @@
    static wxString GetDocumentDir();
    static wxString GetGrandOrgueDir();
    static wxString GetGrandOrgueSubDir(const wxString &subdir);
---- grandorgue-3.6.4.orig/src/grandorgue/GOApp.cpp
-+++ grandorgue-3.6.4/src/grandorgue/GOApp.cpp
-@@ -118,10 +118,12 @@ bool GOApp::OnInit() {
+diff -ru grandorgue-3.14.1.orig/src/grandorgue/GOApp.cpp grandorgue-3.14.1/src/grandorgue/GOApp.cpp
+--- grandorgue-3.14.1.orig/src/grandorgue/GOApp.cpp	2024-04-26 15:19:47.802685569 -0300
++++ grandorgue-3.14.1/src/grandorgue/GOApp.cpp	2024-04-26 15:20:49.972641605 -0300
+@@ -147,10 +147,12 @@
    if (!wxApp::OnInit())
      return false;
  
@@ -41,9 +44,10 @@
    m_locale.Init(m_config->GetLanguageId());
    m_locale.AddCatalog(wxT("GrandOrgue"));
  
---- grandorgue-3.6.4.orig/src/grandorgue/config/GOConfig.cpp
-+++ grandorgue-3.6.4/src/grandorgue/config/GOConfig.cpp
-@@ -224,9 +224,9 @@ GOConfig::GOConfig(wxString instance)
+diff -ru grandorgue-3.14.1.orig/src/grandorgue/config/GOConfig.cpp grandorgue-3.14.1/src/grandorgue/config/GOConfig.cpp
+--- grandorgue-3.14.1.orig/src/grandorgue/config/GOConfig.cpp	2024-04-26 15:21:56.652590461 -0300
++++ grandorgue-3.14.1/src/grandorgue/config/GOConfig.cpp	2024-04-26 15:24:27.672471786 -0300
+@@ -228,9 +228,9 @@
    OrganPackagePath.setDefaultValue(
      GOStdPath::GetGrandOrgueSubDir(_("Organ packages")));
    OrganCachePath.setDefaultValue(
@@ -52,6 +56,6 @@
    OrganSettingsPath.setDefaultValue(
 -    GOStdPath::GetGrandOrgueSubDir(wxT("Data") + m_InstanceName));
 +    GOStdPath::GetConfigDir() + wxFileName::GetPathSeparator() + wxT("GrandOrgueData") + m_InstanceName);
+   OrganCombinationsPath.setDefaultValue(
+     GOStdPath::GetGrandOrgueSubDir(_("Combinations")));
    ExportImportPath.setDefaultValue(
-     GOStdPath::GetGrandOrgueSubDir(_("Settings")));
-   AudioRecorderPath.setDefaultValue(
