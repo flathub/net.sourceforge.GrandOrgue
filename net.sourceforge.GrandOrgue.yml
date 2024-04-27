@@ -47,7 +47,7 @@ modules:
           stable-only: true
           is-main-source: true
       - type: patch
-        path: patches/restore-xdg-compliant-paths.patch
+        path: patches/fix-xdg-compliant-paths.patch
       - type: file
         path: net.sourceforge.GrandOrgue.appdata.xml
     modules:
