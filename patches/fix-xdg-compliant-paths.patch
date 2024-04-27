@@ -1,13 +1,17 @@
 diff --git a/src/core/GOStdPath.cpp b/src/core/GOStdPath.cpp
-index 77c0de73..01a15c04 100644
+index 77c0de73..b71a4831 100644
 --- a/src/core/GOStdPath.cpp
 +++ b/src/core/GOStdPath.cpp
-@@ -41,12 +41,24 @@ wxString GOStdPath::GetConfigDir() {
+@@ -41,12 +41,28 @@ wxString GOStdPath::GetConfigDir() {
    return wxStandardPaths::Get().GetUserConfigDir();
  }
  
 +wxString GOStdPath::GetDataDir() {
-+  return wxStandardPaths::Get().GetUserDataDir();
++#if wxCHECK_VERSION(3, 1, 1)
++  return wxStandardPaths::Get().GetUserDir(wxStandardPaths::Dir_Data);
++#else
++  return GetGrandOrgueSubDir(wxT("Data"));
++#endif
 +}
 +
 +wxString GOStdPath::GetCacheDir() {
