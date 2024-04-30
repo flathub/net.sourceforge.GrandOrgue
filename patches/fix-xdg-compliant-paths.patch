@@ -1,19 +1,11 @@
 diff --git a/src/core/GOStdPath.cpp b/src/core/GOStdPath.cpp
-index 77c0de73..b71a4831 100644
+index 77c0de73..e7e9625b 100644
 --- a/src/core/GOStdPath.cpp
 +++ b/src/core/GOStdPath.cpp
-@@ -41,12 +41,28 @@ wxString GOStdPath::GetConfigDir() {
+@@ -41,6 +41,14 @@ wxString GOStdPath::GetConfigDir() {
    return wxStandardPaths::Get().GetUserConfigDir();
  }
  
-+wxString GOStdPath::GetDataDir() {
-+#if wxCHECK_VERSION(3, 1, 1)
-+  return wxStandardPaths::Get().GetUserDir(wxStandardPaths::Dir_Data);
-+#else
-+  return GetGrandOrgueSubDir(wxT("Data"));
-+#endif
-+}
-+
 +wxString GOStdPath::GetCacheDir() {
 +#if wxCHECK_VERSION(3, 1, 1)
 +  return wxStandardPaths::Get().GetUserDir(wxStandardPaths::Dir_Cache);
@@ -25,22 +17,14 @@ index 77c0de73..b71a4831 100644
  wxString GOStdPath::GetDocumentDir() {
    return wxStandardPaths::Get().GetDocumentsDir();
  }
- 
- wxString GOStdPath::GetGrandOrgueDir() {
--  return GetDocumentDir() + wxFileName::GetPathSeparator() + _("GrandOrgue");
-+  return GetDataDir() + wxFileName::GetPathSeparator() + _("GrandOrgue");
- }
- 
- wxString GOStdPath::GetGrandOrgueSubDir(const wxString &subdir) {
 diff --git a/src/core/GOStdPath.h b/src/core/GOStdPath.h
-index 5bcdb980..bba965f1 100644
+index 5bcdb980..f821628b 100644
 --- a/src/core/GOStdPath.h
 +++ b/src/core/GOStdPath.h
-@@ -16,6 +16,8 @@ public:
+@@ -16,6 +16,7 @@ public:
    static wxString GetBaseDir();
    static wxString GetResourceDir();
    static wxString GetConfigDir();
-+  static wxString GetDataDir();
 +  static wxString GetCacheDir();
    static wxString GetDocumentDir();
    static wxString GetGrandOrgueDir();
