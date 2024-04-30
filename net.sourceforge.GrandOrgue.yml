@@ -14,6 +14,8 @@ finish-args:
   - --socket=pulseaudio
   # Needed for PortAudio/MIDI
   - --device=all
+  # Needed for reading samplesets and saving audio/MIDI recordings
+  - --filesystem=xdg-documents/GrandOrgue
   # Needed for JACK over PipeWire
   - --filesystem=xdg-run/pipewire-0
   - --system-talk-name=org.freedesktop.RealtimeKit1
