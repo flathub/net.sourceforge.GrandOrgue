@@ -1,10 +1,11 @@
 app-id: net.sourceforge.GrandOrgue
 runtime: org.freedesktop.Platform
 sdk: org.freedesktop.Sdk
-runtime-version: '22.08'
+runtime-version: '24.08'
 command: GrandOrgue
 rename-desktop-file: GrandOrgue.desktop
 rename-icon: GrandOrgue
+rename-mime-file: grandorgue.xml
 finish-args:
   # Needed for X11
   - --share=ipc
@@ -18,7 +19,6 @@ finish-args:
   - --filesystem=home
   # Needed for JACK over PipeWire
   - --filesystem=xdg-run/pipewire-0
-  - --system-talk-name=org.freedesktop.RealtimeKit1
 modules:
   - name: grandorgue
     buildsystem: cmake-ninja
@@ -31,10 +31,9 @@ modules:
       - -DUSE_INTERNAL_PORTAUDIO=OFF
       - -DUSE_INTERNAL_ZITACONVOLVER=OFF
     post-install:
-      - sed -i -e "s/Icon=GrandOrgue/Icon=${FLATPAK_ID}/" ${FLATPAK_DEST}/share/applications/GrandOrgue.desktop
+      - desktop-file-edit --set-icon=${FLATPAK_ID} ${FLATPAK_DEST}/share/applications/GrandOrgue.desktop
       - rm ${FLATPAK_DEST}/share/metainfo/GrandOrgue.appdata.xml
-      - install -m644 ${FLATPAK_ID}.appdata.xml ${FLATPAK_DEST}/share/metainfo
-      - mv ${FLATPAK_DEST}/share/mime/packages/{grandorgue,${FLATPAK_ID}}.xml
+      - install -Dm644 ${FLATPAK_ID}.appdata.xml -t ${FLATPAK_DEST}/share/metainfo
       - rm -rf ${FLATPAK_DEST}/share/icons/hicolor/1024x1024
     sources:
       - type: archive
