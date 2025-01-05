@@ -1,0 +1,65 @@
+diff --git a/src/core/GOStdPath.cpp b/src/core/GOStdPath.cpp
+index 77c0de73..e7e9625b 100644
+--- a/src/core/GOStdPath.cpp
++++ b/src/core/GOStdPath.cpp
+@@ -41,6 +41,14 @@ wxString GOStdPath::GetConfigDir() {
+   return wxStandardPaths::Get().GetUserConfigDir();
+ }
+ 
++wxString GOStdPath::GetCacheDir() {
++#if wxCHECK_VERSION(3, 1, 1)
++  return wxStandardPaths::Get().GetUserDir(wxStandardPaths::Dir_Cache);
++#else
++  return GetGrandOrgueSubDir(wxT("Cache"));
++#endif
++}
++
+ wxString GOStdPath::GetDocumentDir() {
+   return wxStandardPaths::Get().GetDocumentsDir();
+ }
+diff --git a/src/core/GOStdPath.h b/src/core/GOStdPath.h
+index 5bcdb980..f821628b 100644
+--- a/src/core/GOStdPath.h
++++ b/src/core/GOStdPath.h
+@@ -16,6 +16,7 @@ public:
+   static wxString GetBaseDir();
+   static wxString GetResourceDir();
+   static wxString GetConfigDir();
++  static wxString GetCacheDir();
+   static wxString GetDocumentDir();
+   static wxString GetGrandOrgueDir();
+   static wxString GetGrandOrgueSubDir(const wxString &subdir);
+diff --git a/src/grandorgue/GOApp.cpp b/src/grandorgue/GOApp.cpp
+index 29d61706..81b0eedf 100644
+--- a/src/grandorgue/GOApp.cpp
++++ b/src/grandorgue/GOApp.cpp
+@@ -147,10 +147,12 @@ bool GOApp::OnInit() {
+   if (!wxApp::OnInit())
+     return false;
+ 
++  // calls SetFileLayout
++  GOStdPath::InitLocaleDir();
++
+   m_config = new GOConfig(m_InstanceName);
+   m_config->Load();
+ 
+-  GOStdPath::InitLocaleDir();
+   m_locale.Init(m_config->GetLanguageId());
+   m_locale.AddCatalog(wxT("GrandOrgue"));
+ 
+diff --git a/src/grandorgue/config/GOConfig.cpp b/src/grandorgue/config/GOConfig.cpp
+index 98ba8516..de8bf54d 100644
+--- a/src/grandorgue/config/GOConfig.cpp
++++ b/src/grandorgue/config/GOConfig.cpp
+@@ -228,9 +228,9 @@ GOConfig::GOConfig(wxString instance)
+   OrganPackagePath.setDefaultValue(
+     GOStdPath::GetGrandOrgueSubDir(_("Organ packages")));
+   OrganCachePath.setDefaultValue(
+-    GOStdPath::GetGrandOrgueSubDir(wxT("Cache") + m_InstanceName));
++    GOStdPath::GetCacheDir() + wxFileName::GetPathSeparator() + wxT("GrandOrgue") + m_InstanceName);
+   OrganSettingsPath.setDefaultValue(
+-    GOStdPath::GetGrandOrgueSubDir(wxT("Data") + m_InstanceName));
++    GOStdPath::GetConfigDir() + wxFileName::GetPathSeparator() + wxT("GrandOrgue") + m_InstanceName);
+   OrganCombinationsPath.setDefaultValue(
+     GOStdPath::GetGrandOrgueSubDir(_("Combinations")));
+   ExportImportPath.setDefaultValue(
