@@ -16,7 +16,7 @@ finish-args:
   # Needed for PortAudio/MIDI
   - --device=all
   # Needed for reading samplesets and saving audio/MIDI recordings
-  - --filesystem=home
+  - --filesystem=xdg-documents/GrandOrgue
   # Needed for JACK over PipeWire
   - --filesystem=xdg-run/pipewire-0
 modules:
@@ -45,6 +45,8 @@ modules:
           url-template: https://github.com/GrandOrgue/grandorgue/archive/refs/tags/$version.tar.gz
           stable-only: true
           is-main-source: true
+      - type: patch
+        path: patches/fix-xdg-compliant-paths.patch
       - type: file
         path: net.sourceforge.GrandOrgue.appdata.xml
     modules:
