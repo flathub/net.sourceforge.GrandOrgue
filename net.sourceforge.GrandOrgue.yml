@@ -19,6 +19,12 @@ finish-args:
   - --filesystem=home
   # Needed for JACK over PipeWire
   - --filesystem=xdg-run/pipewire-0
+cleanup:
+  - /include
+  - /lib/cmake
+  - /lib/pkgconfig
+  - '*.la'
+  - '*.a'
 modules:
   - name: grandorgue
     buildsystem: cmake-ninja
