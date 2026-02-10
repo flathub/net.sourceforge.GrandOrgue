@@ -1,7 +1,7 @@
 app-id: net.sourceforge.GrandOrgue
 runtime: org.freedesktop.Platform
 sdk: org.freedesktop.Sdk
-runtime-version: '24.08'
+runtime-version: '25.08'
 command: GrandOrgue
 rename-desktop-file: GrandOrgue.desktop
 rename-icon: GrandOrgue
