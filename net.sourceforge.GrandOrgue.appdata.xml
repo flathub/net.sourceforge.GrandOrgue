@@ -30,6 +30,8 @@
   <name>GrandOrgue</name>
   <summary>Pipe organ simulator</summary>
   <url type="homepage">https://github.com/GrandOrgue/grandorgue</url>
+  <url type="bugtracker">https://github.com/GrandOrgue/grandorgue/issues</url>
+  <url type="vcs-browser">https://github.com/GrandOrgue/grandorgue</url>
 
   <developer id="io.github.GrandOrgue">
     <name>GrandOrgue developers</name>
@@ -43,63 +45,28 @@
   </description>
 
   <launchable type="desktop-id">net.sourceforge.GrandOrgue.desktop</launchable>
+  <provides>
+    <binary>GrandOrgue</binary>
+  </provides>
+  <content_rating type="oars-1.1"/>
 
   <screenshots>
     <screenshot type="default">
       <image>https://raw.githubusercontent.com/flathub/net.sourceforge.GrandOrgue/master/screenshots/0.png</image>
     </screenshot>
-
-    <!--
-    <screenshot>
-      <image>https://sourceforge.net/p/ourorgan/screenshot/PiteaMHS_main.png</image>
-    </screenshot>
-
-    <screenshot>
-      <image>https://sourceforge.net/p/ourorgan/screenshot/Burea_funeral_extend_main.jpg</image>
-    </screenshot>
-
-    <screenshot>
-      <image>https://sourceforge.net/p/ourorgan/screenshot/Burea_chuch_gui.png</image>
-    </screenshot>
-
-    <screenshot>
-      <image>https://sourceforge.net/p/ourorgan/screenshot/Burea_church_extended.png</image>
-    </screenshot>
-    -->
   </screenshots>
 
-  <provides>
-    <binary>GrandOrgue</binary>
-  </provides>
-
   <releases>
-    <release version="3.16.3-1" date="2025-12-27">
-      <description></description>
-    </release>
-    <release version="3.16.2-1" date="2025-11-14">
-      <description/>
-    </release>
-    <release version="3.16.1-1" date="2025-08-28">
-      <description/>
-    </release>
-    <release version="3.16.0-1" date="2025-08-03">
-      <description/>
-    </release>
-    <release version="3.15.4-1" date="2024-12-21">
-      <description/>
-    </release>
-    <release version="3.15.3-1" date="2024-11-26">
-      <description/>
-    </release>
-    <release version="3.15.2-1" date="2024-10-25">
-      <description/>
-    </release>
-    <release version="3.15.1-1" date="2024-09-05">
-      <description/>
-    </release>
-    <release version="3.15.0-1" date="2024-08-07">
-      <description/>
-    </release>
+    <release version="3.17.0-1" date="2026-02-09"/>
+    <release version="3.16.3-1" date="2025-12-27"/>
+    <release version="3.16.2-1" date="2025-11-14"/>
+    <release version="3.16.1-1" date="2025-08-28"/>
+    <release version="3.16.0-1" date="2025-08-03"/>
+    <release version="3.15.4-1" date="2024-12-21"/>
+    <release version="3.15.3-1" date="2024-11-26"/>
+    <release version="3.15.2-1" date="2024-10-25"/>
+    <release version="3.15.1-1" date="2024-09-05"/>
+    <release version="3.15.0-1" date="2024-08-07"/>
     <release version="3.14.2-1" date="2024-05-03"/>
     <release version="3.14.1-1" date="2024-04-25"/>
     <release version="3.13.3-1" date="2024-01-08"/>
@@ -143,6 +110,4 @@
     <release version="0.3.1.2342-1" date="2021-09-14"/>
     <release version="0.3.1.2338" date="2021-01-04"/>
   </releases>
-
-  <content_rating type="oars-1.1"/>
 </component>

@@ -7,6 +7,7 @@ config-opts:
   - -DYAML_CPP_BUILD_TOOLS=OFF
   - -DYAML_CPP_BUILD_TESTS=OFF
   - -DYAML_CPP_BUILD_CONTRIB=OFF
+  - -DCMAKE_POLICY_VERSION_MINIMUM=3.5
 sources:
   - type: archive
     # Downgradng to release 0.6.3 until fix for https://github.com/jbeder/yaml-cpp/issues/774 is released
