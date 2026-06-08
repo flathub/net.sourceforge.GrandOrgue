@@ -49,8 +49,9 @@ modules:
     build-options:
       cxxflags: -std=c++11
     cleanup:
-      - /bin,
+      - /bin
       - /lib/wx/include
+      - /share/aclocal
       - /share/bakefile
       - /share/man
       - '*.so'
