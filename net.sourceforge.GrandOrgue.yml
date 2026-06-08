@@ -26,6 +26,83 @@ cleanup:
   - '*.la'
   - '*.a'
 modules:
+  - shared-modules/linux-audio/fftw3f-static.json
+  - name: ImageMagick
+    config-opts:
+      - --disable-shared
+      - --disable-static
+      - --disable-docs
+    cleanup:
+      - '*'
+    sources:
+      - type: archive
+        url: https://github.com/ImageMagick/ImageMagick/archive/refs/tags/7.1.1-39.tar.gz
+        sha256: b2eb652d9221bdeb65772503891d8bfcfc36b3b1a2c9bb35b9d247a08965fd5d
+
+  - name: wxWidgets
+    rm-configure: true
+    config-opts:
+      - --disable-webview
+      - --enable-markup
+      - --disable-sdltest
+      - --with-gtk=3
+    build-options:
+      cxxflags: -std=c++11
+    cleanup:
+      - /bin,
+      - /lib/wx/include
+      - /share/bakefile
+      - /share/man
+      - '*.so'
+    sources:
+      - type: archive
+        url: https://github.com/wxWidgets/wxWidgets/releases/download/v3.2.4/wxWidgets-3.2.4.tar.bz2
+        sha256: 0640e1ab716db5af2ecb7389dbef6138d7679261fbff730d23845ba838ca133e
+
+  - name: yaml-cpp
+    buildsystem: cmake-ninja
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=Release
+      - -DBUILD_SHARED_LIBS=ON
+      - -DYAML_BUILD_SHARED_LIBS=ON
+      - -DYAML_CPP_BUILD_TOOLS=OFF
+      - -DYAML_CPP_BUILD_TESTS=OFF
+      - -DYAML_CPP_BUILD_CONTRIB=OFF
+      - -DCMAKE_POLICY_VERSION_MINIMUM=3.5
+    sources:
+      - type: archive
+        # Downgradng to release 0.6.3 until fix for https://github.com/jbeder/yaml-cpp/issues/774 is released
+        url: https://github.com/jbeder/yaml-cpp/archive/refs/tags/yaml-cpp-0.6.3.tar.gz
+        sha256: 77ea1b90b3718aa0c324207cb29418f5bced2354c2e483a9523d98c3460af1ed
+
+  - name: RtAudio
+    sources:
+      - type: archive
+        url: https://github.com/thestk/rtaudio/archive/refs/tags/6.0.1.tar.gz
+        sha256: 7206c8b6cee43b474f43d64988fefaadfdcfc4264ed38d8de5f5d0e6ddb0a123
+
+  - name: RtMidi
+    sources:
+      - type: archive
+        url: https://github.com/thestk/rtmidi/archive/refs/tags/6.0.0.tar.gz
+        sha256: ef7bcda27fee6936b651c29ebe9544c74959d0b1583b716ce80a1c6fea7617f0
+
+  - name: PortAudio
+    sources:
+      - type: archive
+        url: https://github.com/PortAudio/portaudio/archive/refs/tags/v19.7.0.tar.gz
+        sha256: 5af29ba58bbdbb7bbcefaaecc77ec8fc413f0db6f4c4e286c40c3e1b83174fa0
+
+  - name: ZitaConvolver
+    buildsystem: simple
+    build-commands:
+      - cd source && make -j $FLATPAK_BUILDER_N_JOBS && make PREFIX=$FLATPAK_DEST LIBDIR=$FLATPAK_DEST/lib install
+      - ln -sf libzita-convolver.so.4.0.3 $FLATPAK_DEST/lib/libzita-convolver.so.4
+    sources:
+      - type: archive
+        url: https://github.com/GrandOrgue/ZitaConvolver/archive/refs/tags/upstream/4.0.3.tar.gz
+        sha256: 7435a6278b18e1b9d35358d34eeb0d918f9952b87ff8bbba40896434107f2bd5
+
   - name: grandorgue
     buildsystem: cmake-ninja
     config-opts:
@@ -53,12 +130,3 @@ modules:
           is-main-source: true
       - type: file
         path: net.sourceforge.GrandOrgue.appdata.xml
-    modules:
-      - shared-modules/linux-audio/fftw3f-static.json
-      - dependencies/imagemagick.yml # Needed for icons (build-time only)
-      - dependencies/wxwidgets.yml
-      - dependencies/yaml-cpp.yml
-      - dependencies/rtaudio.yml
-      - dependencies/rtmidi.yml
-      - dependencies/portaudio.yml
-      - dependencies/zitaconvolver.yml
