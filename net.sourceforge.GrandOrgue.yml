@@ -107,6 +107,7 @@ modules:
   - name: grandorgue
     buildsystem: cmake-ninja
     config-opts:
+      - -DCMAKE_BUILD_TYPE=Release
       - -DCMAKE_SKIP_RPATH=ON
       - -DBUILD_VERSION=1
       - -DYAML_CPP_INCLUDE_DIRS=/app/include/yaml-cpp
