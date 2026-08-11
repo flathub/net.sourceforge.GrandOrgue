@@ -97,7 +97,8 @@ modules:
   - name: ZitaConvolver
     buildsystem: simple
     build-commands:
-      - cd source && make -j $FLATPAK_BUILDER_N_JOBS && make PREFIX=$FLATPAK_DEST LIBDIR=$FLATPAK_DEST/lib install
+      - cd source && make -j $FLATPAK_BUILDER_N_JOBS && make PREFIX=$FLATPAK_DEST
+        LIBDIR=$FLATPAK_DEST/lib install
       - ln -sf libzita-convolver.so.4.0.3 $FLATPAK_DEST/lib/libzita-convolver.so.4
     sources:
       - type: archive
@@ -122,8 +123,8 @@ modules:
       - rm -rf ${FLATPAK_DEST}/share/icons/hicolor/1024x1024
     sources:
       - type: archive
-        url: https://github.com/GrandOrgue/grandorgue/archive/refs/tags/3.17.2-1.tar.gz
-        sha256: ef26f1de9db0f6e3f8c7c2cb95f0b79d3e022da5bed5671c11adaaa6affec53d
+        url: https://github.com/GrandOrgue/grandorgue/archive/refs/tags/3.17.3-1.tar.gz
+        sha256: b0eb8be791f0980be8cce5af70c03bb30fe2dcb52c97c79167e97f2c441d3019
         x-checker-data:
           type: anitya
           project-id: 235120
