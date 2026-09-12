@@ -1,7 +1,7 @@
 app-id: net.sourceforge.GrandOrgue
 runtime: org.freedesktop.Platform
 sdk: org.freedesktop.Sdk
-runtime-version: '25.08'
+runtime-version: '26.08'
 command: GrandOrgue
 rename-desktop-file: GrandOrgue.desktop
 rename-icon: GrandOrgue
@@ -72,7 +72,7 @@ modules:
       - -DCMAKE_POLICY_VERSION_MINIMUM=3.5
     sources:
       - type: archive
-        # Downgradng to release 0.6.3 until fix for https://github.com/jbeder/yaml-cpp/issues/774 is released
+        # Downgrading to release 0.6.3 until fix for https://github.com/jbeder/yaml-cpp/issues/774 is released
         url: https://github.com/jbeder/yaml-cpp/archive/refs/tags/yaml-cpp-0.6.3.tar.gz
         sha256: 77ea1b90b3718aa0c324207cb29418f5bced2354c2e483a9523d98c3460af1ed
 
@@ -97,15 +97,29 @@ modules:
   - name: ZitaConvolver
     buildsystem: simple
     build-commands:
-      - cd source && make -j $FLATPAK_BUILDER_N_JOBS && make PREFIX=$FLATPAK_DEST LIBDIR=$FLATPAK_DEST/lib install
+      - cd source && make -j $FLATPAK_BUILDER_N_JOBS && make PREFIX=$FLATPAK_DEST
+        LIBDIR=$FLATPAK_DEST/lib install
       - ln -sf libzita-convolver.so.4.0.3 $FLATPAK_DEST/lib/libzita-convolver.so.4
     sources:
       - type: archive
         url: https://github.com/GrandOrgue/ZitaConvolver/archive/refs/tags/upstream/4.0.3.tar.gz
         sha256: 7435a6278b18e1b9d35358d34eeb0d918f9952b87ff8bbba40896434107f2bd5
 
+  - name: cpptrace
+    buildsystem: cmake-ninja
+    builddir: true
+    config-opts:
+      - -DCPPTRACE_BUILD_TESTING=Off
+      - -DCPPTRACE_GET_SYMBOLS_WITH_LIBDL=On
+    sources:
+      - type: archive
+        url: https://github.com/jeremy-rifkin/cpptrace/archive/refs/tags/v1.0.4.tar.gz
+        sha256: 5c9f5b301e903714a4d01f1057b9543fa540f7bfcc5e3f8bd1748e652e24f9ea
+
   - name: grandorgue
     buildsystem: cmake-ninja
+    build-options:
+      cxxflags: -include cstdint
     config-opts:
       - -DCMAKE_BUILD_TYPE=Release
       - -DCMAKE_SKIP_RPATH=ON
@@ -115,6 +129,7 @@ modules:
       - -DUSE_INTERNAL_RTAUDIO=OFF
       - -DUSE_INTERNAL_PORTAUDIO=OFF
       - -DUSE_INTERNAL_ZITACONVOLVER=OFF
+      - -DUSE_INTERNAL_CPPTRACE=OFF
     post-install:
       - desktop-file-edit --set-icon=${FLATPAK_ID} ${FLATPAK_DEST}/share/applications/GrandOrgue.desktop
       - rm ${FLATPAK_DEST}/share/metainfo/GrandOrgue.appdata.xml
@@ -122,8 +137,8 @@ modules:
       - rm -rf ${FLATPAK_DEST}/share/icons/hicolor/1024x1024
     sources:
       - type: archive
-        url: https://github.com/GrandOrgue/grandorgue/archive/refs/tags/3.17.2-1.tar.gz
-        sha256: ef26f1de9db0f6e3f8c7c2cb95f0b79d3e022da5bed5671c11adaaa6affec53d
+        url: https://github.com/GrandOrgue/grandorgue/archive/refs/tags/3.17.3-1.tar.gz
+        sha256: b0eb8be791f0980be8cce5af70c03bb30fe2dcb52c97c79167e97f2c441d3019
         x-checker-data:
           type: anitya
           project-id: 235120
